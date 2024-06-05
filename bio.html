@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      header {
+            background-color: #fff;
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: antiquewhite;
+        }
+
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+
+        nav {
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 10px;
+        }
+
+        nav ul li a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgb(128, 97, 50);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #5c4638;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .logo a {
+            display: inline-block;
+        }
+
+        .logo img {
+            width: 150px;
+            cursor: pointer;
+        }
+       
+        footer {
+            background-color: #5f3a22;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .social-links a {
+            color: black;
+            margin: 0 10px;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: rgb(128, 97, 50);
+        }
+
+        .disclaimer p {
+            color: #fff;
+            margin: 0;
+        }
+
+        .dark-mode-button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: rgb(128, 97, 50);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .polaroid {
+            position: relative;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .polaroid-caption {
+            text-align: center;
+            padding: 5px;
+            color: #333;
+            font-size: 14px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .polaroid.active {
+            display: block;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            background-color: rgba(128, 97, 50, 0.5);
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(128, 97, 50, 0.8);
+        }
+
+        .caption-container {
+            text-align: center;
+            padding: 10px 20px;
+            background-color: rgba(128, 97, 50, 0.5);
+            color: white;
+        }
+
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .dot-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+
+        .about-me-video {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .about-me-video video {
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-caption {
+            margin: 10px 0;
+            font-size: 1.2em;
+            color: rgb(128, 97, 50);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"> 
+            <a href="index.html"> 
+                <img src="resources/image/dina.png" alt="Dina's Logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="navigate('index.html')">Homepage</a></li>
+                <li><a href="#" onclick="navigate('bio.html')">Bio</a></li>
+                <li><a href="#" onclick="navigate('soulmate.html')">Soulmate</a></li>
+                <li><a href="#" onclick="navigate('hobby.html')">Hobby</a></li>
+                <li><a href="#" onclick="navigate('study_journey.html')">Study journey</a></li>
+                <li><a href="#" onclick="navigate('self_care.html')">Self-care</a></li>
+                <li><a href="#" onclick="navigate('video_gallery.html')">Video Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+    <button class="dark-mode-button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <main>
+        <section>
+            <h1>About Me</h1>
+            <figure class="slideshow-container">
+                <div class="polaroid">
+                    <img src="resources/image/14.png" alt="Image 1">
+                    <div class="polaroid-caption">Dina Batrisyia</div>
+                </div>
+                
+                <div class="polaroid">
+                    <img src="resources/image/9.jpg" alt="Image 2">
+                    <div class="polaroid-caption">Dina Batrisyia</div>
+                </div>
+                
+                <div class="polaroid">
+                    <img src="resources/image/3.jpg" alt="Image 3">
+                    <div class="polaroid-caption">Dina Batrisyia</div>
+                </div>
+                
+                <div class="polaroid">
+                    <img src="resources/image/15.jpg" alt="Image 4">
+                    <div class="polaroid-caption">Dina Batrisyia</div>
+                </div>
+                <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+                <button class="next" onclick="plusSlides(1)">&#10095;</button>
+            </figure>
+
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+            </div>
+
+            <br><br>
+
+            <p>My name is Dina Batrisyia Mohd Zaidi.</p>
+            <p>I'm 20 years old.</p>
+            <p>My date of birth is January 27, 2004.</p>
+            <p>My hometown is Klang, Selangor, Malaysia.</p>
+            <p>I was born at Hospital Besar Tunku Ampuan Rahimah (HBTAR).</p>
+            <p>My elementary school is SK Abdul Samad, my secondary school is SMK (p) Kapar, and I am currently a third-year student in semester 4 at UiTM Kedah Cawangan Sungai Petani, majoring in Diploma in Informatics Library.</p>
+            <p>I am the eldest of 6 siblings.</p>
+            <p>My favourite food is chau kueh tiau, takoyaki, sushi, chocolate, cheesecake, taufufa and nasi lemak sambal sotong.</p>
+            <p>My favourite drink is iced lemon tea, milk tea, yogurt drink, soya and iced lemon or lime.</p>
+            <p>My favourite color is pink, brown and blue sky.</p>
+            <p>My height is 150cm and my weight is 43 kg.</p>
+            <p>My mbti is INFJ.</p>
+            <p>My hobby is listening to music, writing poems and diary, dancing and playing handball.</p>
+            <p>My comfort k-drama of all the time is Queen of tears on Netflix.</p>
+            <p>My favourite quotes is stay pretty, stay educated, outdress everyone, prioritize yourself, love yourself and be successful.</p>
+        </section>
+
+
+        <section class="about-me-video">
+            <video controls>
+                <source src="resources/video/vid12.mp4" type="video/mp4">
+            </video>
+            <p class="video-caption">Get to know me better through this short video!</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/ily_dl.sky?igsh=ZXBybXVyYjdmNGh3" target="_blank"><img src="resources/image/ig.png" alt="Instagram"></a>
+            <a href="https://wa.link/w0l4n5" target="_blank"><img src="resources/image/wa.png" alt="WhatsApp"></a>
+            <a href="https://www.tiktok.com/@aislemonteaaaaaaa?_t=8mEuZcDrpwI&_r=1" target="_blank"><img src="resources/image/tt.png" alt="TikTok"></a>
+        </div>
+        <br><br> 
+        <div class="disclaimer">
+            <h4>Disclaimer</h4>
+            <p>The content on this website is provided for educational purposes only. It is part of an individual project for the course IML254. The information presented here is intended to serve as a resource for academic study and personal learning.</p>
+        </div>
+        <br> <br>
+        <div class="contact-form">
+            <h4>Contact Me</h4>
+            <form>
+            <br> 
+                <input type="text" placeholder="Your Name" required style="padding: 10px; margin: 10px; border-radius: 10px; border: none; width: 80%;">
+                <input type="email" placeholder="Your Email" required style="padding: 10px; margin: 10px; border-radius: 10px; border: none; width: 80%;">
+                <textarea placeholder="Your Message" required style="padding: 10px; margin: 10px; border-radius: 10px; border: none; width: 80%; height: 100px;"></textarea>
+                <button type="submit" style="padding: 10px 20px; border-radius: 10px; border: none; background-color: rgba(128, 97, 50); color: black;">Send</button>
+            </form>
+        </div>
+        <div class="copyright">
+            <p>© 2024. Dina Batrisyia. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+    <button class="scroll-to-bottom" onclick="scrollToBottom()">↓</button>
+
+    <script>
+        // JavaScript for Navigation
+        function navigate(url) {
+            window.location.href = url;
+        }
+
+        // JavaScript for Dark Mode toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // JavaScript for Smooth Scroll to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // JavaScript for Smooth Scroll to Bottom
+        function scrollToBottom() {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        // JavaScript for Slideshow
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("polaroid");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+        }
+    </script>
+</body>
+</html>
+
+
+         

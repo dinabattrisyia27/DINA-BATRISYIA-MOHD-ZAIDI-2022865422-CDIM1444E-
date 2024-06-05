@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        header {
+            background-color: #fff;
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: antiquewhite;
+        }
+
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+
+        nav {
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 10px;
+        }
+
+        nav ul li a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgb(128, 97, 50);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #5c4638;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .logo a {
+            display: inline-block;
+        }
+
+        .logo img {
+            width: 150px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .logo img:hover {
+            transform: rotate(360deg);
+        }
+
+        .filter-bar {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .filter-bar button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background: rgb(128, 97, 50);
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .filter-bar button:hover {
+            background: #5c4638;
+            transform: scale(1.1);
+        }
+
+        .video-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .video-item {
+            background: #fff;
+            color: #333;
+            border: 1px solid #5f3a22;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+        }
+
+        .video-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-item video {
+            width: 100%;
+            height: auto;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        footer {
+            background-color: #5f3a22;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .social-links a {
+            color: black;
+            margin: 0 10px;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: rgb(128, 97, 50);
+        }
+
+        .disclaimer p {
+            color: #fff;
+            margin: 0;
+        }
+
+        .scroll-to-top, .scroll-to-bottom {
+            display: none;
+            position: fixed;
+            right: 30px;
+            padding: 10px;
+            background: rgb(128, 97, 50);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .scroll-to-top:hover, .scroll-to-bottom:hover {
+            background: rgb(128, 97, 50);
+            transform: scale(1.1);
+        }
+
+        .scroll-to-top {
+            bottom: 80px;
+        }
+
+        .scroll-to-bottom {
+            bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="resources/image/dina.png" alt="Dina's Logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Homepage</a></li>
+                <li><a href="bio.html">Bio</a></li>
+                <li><a href="soulmate.html">Soulmate</a></li>
+                <li><a href="hobby.html">Hobby</a></li>
+                <li><a href="study_journey.html">Study Journey</a></li>
+                <li><a href="self_care.html">Self-Care</a></li>
+                <li><a href="video_gallery.html">Video Gallery</a></li>
+            </ul>
+        </nav>
+        <button class="dark-mode-button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+        <button class="scroll-to-bottom" onclick="scrollToBottom()">↓</button>
+    </header>
+
+    <section class="filter-bar">
+        <button onclick="filterVideos('all')">All</button>
+        <button onclick="filterVideos('category1')">Myself</button>
+        <button onclick="filterVideos('category2')">Randoms</button>
+    </section>
+
+    <section class="video-gallery">
+        <div class="video-item category1">
+            <video controls>
+                <source src="resources/video/vid1.mp4" type="video/mp4">
+            </video>
+            <p>Dina</p>
+        </div>
+        <div class="video-item category1">
+            <video controls>
+                <source src="resources/video/vid2.mp4" type="video/mp4">
+            </video>
+            <p>Dina</p>
+        </div>
+        <div class="video-item category1">
+            <video controls>
+                <source src="resources/video/vid3.mp4" type="video/mp4">
+            </video>
+            <p>Dina</p>
+        </div>
+        <div class="video-item category1">
+            <video controls>
+                <source src="resources/video/vid4.mp4" type="video/mp4">
+            </video>
+            <p>Dina</p>
+        </div>
+        <div class="video-item category1">
+            <video controls>
+                <source src="resources/video/vid5.mp4" type="video/mp4">
+            </video>
+            <p>Dina</p>
+        </div>
+
+        <div class="video-item category2">
+            <video controls>
+                <source src="resources/video/vid6.mp4" type="video/mp4">
+            </video>
+            <p>Dina</p>
+        </div>
+
+        <div class="video-item category2">
+            <video controls>
+                <source src="resources/video/vid7.mp4" type="video/mp4">
+            </video>
+            <p>Dina</p>
+        </div>
+
+        <div class="video-item category2">
+            <video controls>
+                <source src="resources/video/vid8.mp4" type="video/mp4">
+            </video>
+            <p>Dina</p>
+        </div>
+
+        <div class="video-item category2">
+            <video controls>
+                <source src="resources/video/vid9.mp4" type="video/mp4">
+            </video>
+            <p>Dina</p>
+        </div>
+
+        <div class="video-item category2">
+            <video controls>
+                <source src="resources/video/vid10.mp4" type="video/mp4">
+            </video>
+            <p>Dina</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/ily_dl.sky?igsh=ZXBybXVyYjdmNGh3" target="_blank">
+                <img src="resources/image/ig.png" alt="Instagram">
+            </a>
+            <a href="https://wa.link/w0l4n5" target="_blank">
+                <img src="resources/image/wa.png" alt="WhatsApp">
+            </a>
+            <a href="https://www.tiktok.com/@aislemonteaaaaaaa?_t=8mEuZcDrpwI&_r=1" target="_blank">
+                <img src="resources/image/tt.png" alt="TikTok">
+            </a>
+        </div>
+        <div class="disclaimer">
+            <h4>Disclaimer</h4>
+            <p>The content on this website is provided for educational purposes only. It is part of an individual project for the course IML254. The information presented here is intended to serve as a resource for academic study and personal learning.</p>
+        </div>
+        <div class="contact-form">
+            <h4>Contact Me</h4>
+            <form>
+                <input type="text" placeholder="Your Name" required style="padding: 10px; margin: 10px; border-radius: 10px; border: none; width: 80%;">
+                <input type="email" placeholder="Your Email" required style="padding: 10px; margin: 10px; border-radius: 10px; border: none; width: 80%;">
+                <textarea placeholder="Your Message" required style="padding: 10px; margin: 10px; border-radius: 10px; border: none; width: 80%; height: 100px;"></textarea>
+                <button type="submit" style="padding: 10px 20px; border-radius: 10px; border: none; background-color: rgba(128, 97, 50); color: black;">Send</button>
+            </form>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024. Dina Batrisyia. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToBottom() {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        window.onscroll = function() {
+            const scrollToTopButton = document.querySelector('.scroll-to-top');
+            const scrollToBottomButton = document.querySelector('.scroll-to-bottom');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopButton.style.display = 'block';
+                scrollToBottomButton.style.display = 'block';
+            } else {
+                scrollToTopButton.style.display = 'none';
+                scrollToBottomButton.style.display = 'none';
+            }
+        }
+
+        function filterVideos(category) {
+            const videos = document.querySelectorAll('.video-item');
+            videos.forEach(video => {
+                if (category === 'all' || video.classList.contains(category)) {
+                    video.style.display = 'block';
+                } else {
+                    video.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

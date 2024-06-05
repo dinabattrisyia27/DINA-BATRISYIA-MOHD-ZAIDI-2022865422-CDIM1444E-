@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soulmate</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background: linear-gradient(135deg, #ffccff, #fff);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .logo img {
+            width: 30%;
+            cursor: pointer;
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        nav ul li {
+            margin: 10px;
+        }
+
+        nav ul li a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgb(128, 97, 50);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s ease, transform 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background: linear-gradient(135deg, #5c4638, #704e3a);
+            transform: translateY(-2px);
+        }
+
+        .title-container {
+            position: relative;
+            display: inline-block;
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .cloud {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+            background: skyblue;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            z-index: -1;
+        }
+
+        .title-box {
+            font-size: 3em;
+            font-weight: bold;
+            color: #ff69b4;
+            text-shadow: 2px 2px 2px turquoise;
+            position: relative;
+            padding: 20px 40px;
+            border: 5px solid #ff69b4;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ffccff, #ff99cc);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .intro {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            font-size: 1.2em;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            justify-content: center;
+            margin: 20px;
+            padding: 0 10px;
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: linear-gradient(135deg, #fff, #f9f9f9);
+            max-width: 200px;
+            margin: auto;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .card img {
+            width: 100%;
+            height: 80%;
+            display: block;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .card .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover .overlay {
+            opacity: 0.7;
+        }
+
+        .info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .info h2 {
+            font-size: 1.3em;
+            margin: 10px 0;
+        }
+
+        .info p {
+            margin: 5px 0;
+        }
+
+        footer {
+            background-color: #5f3a22;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .social-links a {
+            color: black;
+            margin: 0 10px;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color:  rgb(128, 97, 50) ;
+        }
+
+        .disclaimer p {
+            color: #fff;
+            margin: 0;
+        }
+
+        .scroll-to-top, .scroll-to-bottom {
+            display: none;
+            position: fixed;
+            right: 30px;
+            padding: 10px;
+            background-color: rgb(128, 97, 50);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .scroll-to-top:hover, .scroll-to-bottom:hover {
+            background-color: #5c4638;
+        }
+
+        .scroll-to-top {
+            bottom: 80px;
+        }
+
+        .scroll-to-bottom {
+            bottom: 30px;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <a href="index.html">
+            <img src="resources/image/dina.png" alt="Dina's Logo">
+        </a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="navigate('index.html')">Homepage</a></li>
+            <li><a href="#" onclick="navigate('bio.html')">Bio</a></li>
+            <li><a href="#" onclick="navigate('soulmate.html')">Soulmate</a></li>
+            <li><a href="#" onclick="navigate('hobby.html')">Hobby</a></li>
+            <li><a href="#" onclick="navigate('study_journey.html')">Study journey</a></li>
+            <li><a href="#" onclick="navigate('self_care.html')">Self-care</a></li>
+            <li><a href="#" onclick="navigate('video_gallery.html')">Video Gallery</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="title-container">
+    <div class="cloud"></div>
+    <div class="title-box">Soulmate</div>
+</div>
+<div class="intro">
+    <p>Meet my beautiful besties who have their own unique stories and interests:</p>
+</div>
+
+<div class="card-container">
+    <div class="card">
+        <img src="resources/image/aisya.jpg" alt="Character">
+        <div class="overlay"></div>
+        <div class="info">
+            <h2 class="name">Name: Aisyatullieza Binti Abdullah</h2>
+            <p class="birthday">Birthday: 21 January 2004</p>
+            <p class="birthplace">Birthplace: Hospital Selayang, Selangor</p>
+            <p class="hobby">Hobby: Read book/ebook/wattpad</p>
+            <p class="favourite-food">Favourite food: Bakso</p>
+            <p class="favourite-drink">Favourite drink: Iced lemon tea</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="resources/image/tasha.jpg" alt="Character">
+        <div class="overlay"></div>
+        <div class="info">
+            <h2 class="name">Name: Nornatashabilla Binti Abdullah</h2>
+            <p class="birthday">Birthday: 10 December 2004</p>
+            <p class="birthplace">Birthplace: Hospital Kuala Lumpur</p>
+            <p class="hobby">Hobby: Read book/ebook/wattpad</p>
+            <p class="favourite-food">Favourite food: Laksa</p>
+            <p class="favourite-drink">Favourite drink: Chocolate, green tea and matcha</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="resources/image/kinah.jpg" alt="Character">
+        <div class="overlay"></div>
+        <div class="info">
+            <h2 class="name">Name: Nur Sakinah Binti Sahrulnizam</h2>
+            <p class="birthday">Birthday: 6 May 2004</p>
+            <p class="birthplace">Birthplace: Hospital Raub, Pahang </p>
+            <p class="hobby">Hobby: Listening song and singing</p>
+            <p class="favourite-food">Favourite food: Nasi ayam</p>
+            <p class="favourite-drink">Favourite drink: Fresh oren</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="resources/image/daewi.jpg" alt="Character">
+        <div class="overlay"></div>
+        <div class="info">
+            <h2 class="name">Name: Devi Izzati Binti Safari</h2>
+            <p class="birthday">Birthday: 21 May 2004</p>
+            <p class="birthplace">Birthplace: Hospital Besar Tunku Ampuan Rahimah, Selangor </p>
+            <p class="hobby">Hobby: Painting</p>
+            <p class="favourite-food">Favourite food: Bihun tomyam</p>
+            <p class="favourite-drink">Favourite drink: Strawberry soda</p>
+        </div>
+    </div>
+</div>
+
+<button class="scroll-to-top" onclick="scrollToTop()">Scroll to Top</button>
+<button class="scroll-to-bottom" onclick="scrollToBottom()">Scroll to Bottom</button>
+
+
+<footer>
+    <div class="social-links">
+        <a href="https://www.instagram.com/ily_dl.sky?igsh=ZXBybXVyYjdmNGh3" target="_blank"><img src="resources/image/ig.png" alt="Instagram"></a>
+        <a href="https://wa.link/w0l4n5" target="_blank"><img src="resources/image/wa.png" alt="WhatsApp"></a>
+        <a href="https://www.tiktok.com/@aislemonteaaaaaaa?_t=8mEuZcDrpwI&_r=1" target="_blank"><img src="resources/image/tt.png" alt="TikTok"></a>
+    </div>
+    <br><br> 
+    <div class="disclaimer">
+        <h4>Disclaimer</h4>
+        <p>The content on this website is provided for educational purposes only. It is part of an individual project for the course IML254. The information presented here is intended to serve as a resource for academic study and personal learning.</p>
+    </div>
+    <div class="contact-form">
+        <h4>Contact Me</h4>
+        <form>
+            <input type="text" placeholder="Your Name" required style="padding: 10px; margin: 10px; border-radius: 10px; border: none; width: 80%;">
+            <input type="email" placeholder="Your Email" required style="padding: 10px; margin: 10px; border-radius: 10px; border: none; width: 80%;">
+            <textarea placeholder="Your Message" required style="padding: 10px; margin: 10px; border-radius: 10px; border: none; width: 80%; height: 100px;"></textarea>
+            <button type="submit" style="padding: 10px 20px; border-radius: 10px; border: none; background-color: rgba(128, 97, 50); color: black;">Send</button>
+        </form>
+    </div>
+    <div class="copyright">
+        <p>&copy; 2024. Dina Batrisyia. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    function navigate(url) {
+        window.location.href = url;
+    }
+
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+    }
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function scrollToBottom() {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+
+    window.onscroll = function() {
+        const scrollToTopButton = document.querySelector('.scroll-to-top');
+        const scrollToBottomButton = document.querySelector('.scroll-to-bottom');
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollToTopButton.style.display = 'block';
+            scrollToBottomButton.style.display = 'block';
+        } else {
+            scrollToTopButton.style.display = 'none';
+            scrollToBottomButton.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>
+
+
