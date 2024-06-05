@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Door</title>
+    <title>Homepage</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-          body {
+        body {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             margin: 0;
             padding: 0;
@@ -73,24 +73,13 @@
         .main-content.visible {
             display: block;
         }
+
         header {
             background-color: #fff;
             padding: 10px;
             z-index: 1000;
         }
 
-        body {
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: antiquewhite;
-        }
-
-        body.dark-mode {
-            background-color: #333;
-            color: #fff;
-        }
         body.dark-mode {
             background-color: #333;
             color: #fff;
@@ -279,7 +268,8 @@
             <button class="enter-button" onclick="enterWebsite()">Enter</button>
         </div>
     </div>
-    <body>
+    
+    <div id="mainContent" class="main-content">
         <header>
             <div class="logo">
                 <a href="index.html">
@@ -357,9 +347,6 @@
                 <p>&copy; 2024. Dina Batrisyia. All rights reserved.</p>
             </div>
         </footer>
-    
-        <button class="scroll-to-top" onclick="scrollToTop()">Scroll to Top</button>
-        <button class="scroll-to-bottom" onclick="scrollToBottom()">Scroll to Bottom</button>
     
         <button class="scroll-to-top" onclick="scrollToTop()">Scroll to Top</button>
         <button class="scroll-to-bottom" onclick="scrollToBottom()">Scroll to Bottom</button>
